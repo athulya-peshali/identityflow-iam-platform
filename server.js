@@ -8,6 +8,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const { provisionUser } = require('./controllers/provisioning');
 const { sendTemporaryCredentials } = require('./services/emailjs');
+const { revokeAccess } = require('./controllers/revocation');
 
 // Load environment variables
 dotenv.config();
@@ -59,7 +60,16 @@ app.post('/api/v1/webhook/hr-event', (req, res) => {
 
         } else if (status === 'TERMINATED') {
             console.log(`[Action] Initiating Offboarding Revocation for ${first_name} ${last_name}...`);
-            // TODO: Execute Revocation Pipeline (Sprint 4)
+            
+            // Execute Revocation Pipeline
+            revokeAccess(payload.data)
+                .then(result => {
+                    console.log(`[Success] Access successfully revoked for employee: ${employee_id}`);
+                })
+                .catch(error => {
+                    console.error(`[Error] Revocation failed for ${employee_id}`);
+                });
+
         } else {
             console.log(`[Ignored] Status '${status}' requires no automated action.`);
         }
