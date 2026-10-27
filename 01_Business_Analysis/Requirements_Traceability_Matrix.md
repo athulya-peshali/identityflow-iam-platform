@@ -1,0 +1,13 @@
+# Requirements Traceability Matrix (RTM)
+### Project: IdentityFlow IAM Platform
+
+| Req ID | Requirement Type | Description / User Story | System Module / Component | Target Integration / Service | Verification & Test Method | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **REQ-01** | Functional | As an HR manager, I want employee status changes (`HIRED`) to automatically trigger provisioning so that access is granted instantly. | Webhook Ingestion Controller (`server.js`) | Express.js REST API | PowerShell `Invoke-RestMethod` (`202 Accepted`) | ✅ Implemented |
+| **REQ-02** | Functional | As a system administrator, I want user records automatically created in Cloud Firestore to maintain an identity directory. | Database Service (`services/firebase.js`) | Cloud Firestore (`identityflow-dev`) | Firebase Console / Local Log Verification | ✅ Implemented |
+| **REQ-03** | Functional | As an IT admin, I want corporate user accounts provisioned in Google Workspace upon hire. | Workspace Provisioning (`services/googleWorkspace.js`) | Google Workspace Admin Directory API | Integration Test / Mock Verification | ✅ Implemented |
+| **REQ-04** | Functional | As a security lead, I want new hires automatically added to relevant Slack channels based on their department. | Slack Provisioning (`services/slack.js`) | Slack Web API | Integration Test / Mock Verification | ✅ Implemented |
+| **REQ-05** | Security | As a compliance officer, I want temporary passwords generated securely using cryptographic standards. | Credential Generator (`utils/crypto.js`) | Node.js native `crypto` module | Unit Testing / Log Inspection | ✅ Implemented |
+| **REQ-06** | Security | As a new employee, I want to receive my temporary credentials via a secure automated email dispatch. | Email Dispatch Service (`services/emailjs.js`) | EmailJS REST API | End-to-End Webhook Payload Test | ✅ Implemented |
+| **REQ-07** | Compliance | As an auditor, I want immutable audit logs of all provisioning and revocation events for ISO 27001 alignment. | Audit Logging Module (`controllers/revocation.js`) | Cloud Firestore Audit Collection | Database Query Verification | ✅ Implemented |
+| **REQ-08** | Functional | As an HR manager, I want immediate resource teardown and access revocation when an employee is terminated (`TERMINATED`). | Revocation Controller (`controllers/revocation.js`) | Google Workspace, Slack, & Firestore | Webhook Simulation Test | ✅ Implemented |
