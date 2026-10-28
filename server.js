@@ -14,8 +14,9 @@ const { revokeAccess } = require('./controllers/revocation');
 dotenv.config();
 
 const app = express();
+const path = require('path');
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
 const PORT = process.env.PORT || 3000;
 

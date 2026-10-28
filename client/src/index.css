@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Brand & Status Colors */
+  --primary: #147F87;
+  --primary-light: #3797A3;
+  --primary-dark: #0F6A72;
+  --danger: #D92D20;
+  --danger-bg: #FEE4E2;
+  --danger-text: #B42318;
+  --danger-border: #F7B4AE;
+  --warning: #DC6803;
+  --warning-bg: #FEF0C7;
+  --warning-text: #93370D;
+  --success: #12B76A;
+  --success-bg: #D1FADF;
+  --success-text: #05603A;
+  --accent-purple: #7C6FE0;
+  --purple-bg: #E4E1FF;
+  --purple-text: #3B2FA0;
+
+  /* Typography & Neutral Colors */
+  --text: #0E2F33;
+  --text-muted: #3F5C5F;
+  --border-soft: rgba(15, 80, 90, 0.12);
+
+  /* Shape & Depth Tokens */
+  --card-radius: 20px;
+  --btn-radius: 14px;
+  --chip-radius: 999px;
+  --card-shadow: 0 8px 28px rgba(15, 80, 90, 0.09);
+  --card-shadow-hover: 0 12px 32px rgba(15, 80, 90, 0.14);
+
+  /* Glassmorphism Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.8);
+  --glass-blur: blur(14px);
+  --sidebar-bg: rgba(255, 255, 255, 0.45);
+  --sidebar-border: 1px solid rgba(255, 255, 255, 0.7);
+
+  /* Fonts */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  background: linear-gradient(135deg, #CFE3E5 0%, #B4D3D6 45%, #C9CDE8 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+
+/* Glass Card Utility */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.glass-card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Sidebar Glass Utility */
+.glass-sidebar {
+  background: var(--sidebar-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-right: var(--sidebar-border);
+}
+/* Accessibility Focus Ring */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Respect */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
